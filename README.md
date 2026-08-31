@@ -8,6 +8,8 @@ That badge is live — click it. It's a real display, posted to hourly by this f
 
 A URL format for reporting what an AI agent is doing to a human, live. One URL, three reserved keys, five status values. No SDK, no key, no signup.
 
+![One line pasted into an agent's instructions, and its work appearing on a live display](agentdisplay-demo.gif)
+
 ```bash
 curl "https://agentdisplay.ai/8f14e45f-ceea-467a-9c1a-1f5e3a2b7c90?agentname=Deploy+Bot&message=Build+passed&status=running"
 ```
@@ -19,6 +21,8 @@ Open the same URL in a browser and you see it.
 Paste this into a `CLAUDE.md`, an `AGENTS.md`, or a system prompt — replacing the UUID with your own:
 
 > Keep me posted: whenever you finish something significant, visit https://agentdisplay.ai/{uuid}?agentname=YourAgent&message=what+you+just+did&status=running — changing message each time. status must be one of: running, waiting, complete, error, blocked.
+
+That paragraph is the entire onboarding. Claude Code picked it up first try with zero coaching, and chose the right status value on its own.
 
 ## The format in one screen
 
