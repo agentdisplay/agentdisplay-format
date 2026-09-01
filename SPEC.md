@@ -137,9 +137,9 @@ GET https://agentdisplay.ai/{uuid}/data
   "retentionHours": 24,
   "createdAt": "2026-08-12T22:04:41.000Z",
   "lastUpdate": "2026-08-13T04:21:09.000Z",
-  "messageCount": 9,
+  "messageCount": 12,
 
-  "unlockedAgents": 1,
+  "unlockedAgents": 3,
   "agents": [
     { "name": "Deploy Bot", "status": "running", "statusRaw": "running",
       "statusCorrection": null, "statusUpdated": "2026-08-13T04:21:09.000Z",
@@ -147,6 +147,12 @@ GET https://agentdisplay.ai/{uuid}/data
       "stats": [
         { "key": "version", "value": "v2.4.1", "updatedAt": "2026-08-13T04:21:09.000Z" }
       ] },
+    { "name": "Nightly Import", "status": "error", "statusRaw": "error",
+      "statusCorrection": null, "statusUpdated": "2026-08-13T04:02:55.000Z",
+      "lastUpdate": "2026-08-13T04:02:55.000Z", "messageCount": 1, "stats": [] },
+    { "name": "Invoice Sweep", "status": "complete", "statusRaw": "complete",
+      "statusCorrection": null, "statusUpdated": "2026-08-13T03:58:10.000Z",
+      "lastUpdate": "2026-08-13T03:58:10.000Z", "messageCount": 3, "stats": [] },
     { "redacted": true, "name": "Research Bot", "status": null, "statusCorrection": null,
       "lastUpdate": "2026-08-13T04:16:02.000Z", "messageCount": 3, "stats": [] }
   ],
@@ -177,7 +183,7 @@ A UUID nobody has written to yet MUST return `200` with `"exists": false` rather
 
 ### Visibility and redaction
 
-`unlockedAgents` says how many of the roster's agents this board presents in full: `1` (the default), a number, or `0` meaning no limit. It is a property of the **board**, not of the viewer — every reader of a given URL receives the same payload, so a wall display never needs to authenticate.
+`unlockedAgents` says how many of the roster's agents this board presents in full: a count, or `0` meaning no limit. The count is whatever the implementation's tier says — the reference implementation serves 3 to a board nobody has paid for — so a reader MUST take it from the payload rather than assume a default. It is a property of the **board**, not of the viewer — every reader of a given URL receives the same payload, so a wall display never needs to authenticate.
 
 Agents beyond that limit are **redacted by the server**, not merely hidden by the renderer. A redacted entry carries `"redacted": true` with `status` and `stats` nulled or empty, its messages are absent from the feed, and the top-level mirror fields never reflect it. Its `name`, `lastUpdate` and `messageCount` survive — the name is the *address* an agent writes to, not the content being gated, and withholding it breaks the one thing anyone legitimately needs from a locked agent: instructions that post to it rather than minting a new one. What redaction protects is everything the agent *said*.
 
@@ -256,4 +262,4 @@ The five status values are unchanged, and a v1 renderer pointed at a v2 payload 
 
 ## 9. License
 
-This specification is published under the [MIT License](LICENSE) by Cell Australia Pty Ltd. Implement it, fork it, host your own. Attribution is appreciated and not required.
+This specification is published under the [MIT License](LICENSE) by agentdisplay.ai. Implement it, fork it, host your own. Attribution is appreciated and not required.
