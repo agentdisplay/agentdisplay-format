@@ -45,8 +45,8 @@ Aliases (`done`, `finished`, `failed`, …) are accepted so a first attempt writ
 
 The reference implementation is dependency-free JavaScript, served uncompiled:
 
-- [`format.js`](https://agentdisplay.ai/js/format.js) — the enum, the aliases, the parser
-- [`render.js`](https://agentdisplay.ai/js/render.js) — the renderer, full-page and tile modes
+- [`format.js`](format.js) — the enum, the aliases, the parser (served live at <https://agentdisplay.ai/js/format.js>)
+- [`render.js`](render.js) — the renderer, full-page and tile modes (served live at <https://agentdisplay.ai/js/render.js>)
 
 Conformance requirements are in [SPEC.md §7](SPEC.md#7-writing-your-own-renderer). The short version: give each of the five a distinct treatment, never rely on colour alone, don't coerce unknown values, and show the correction when one is present.
 
